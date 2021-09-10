@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+    <head th:include="~{ head :: #head }"></head>
+<body>
+    <header th:include="~{ header :: #header }"></header>
+
+    <main class="container">
+        <div th:if="${param.success}" style="color: #0F0">Opération effectuée avec succès</div>
+        <div th:if="${param.error}" style="color: #F00" th:text="${param.error}"></div>
+
+        <div class="h1">Liste des Patients</div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Mail</th>
+                    <th>Téléphone</th>
+                    <th>Ville</th>
+                    <th><i class="fas fa-cogs"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="patient : ${liste_patient}">
+                    <td th:utext="${patient.id}"></td>
+                    <td th:utext="${patient.nom}"></td>
+                    <td th:utext="${patient.prenom}"></td>
+                    <td th:utext="${patient.email}"></td>
+                    <td th:utext="${patient.telephone}"></td>
+                    <td th:utext="${patient.ville?.nom}"></td>
+                    <td>
+                        <a th:href="@{'/patient/edit/' + ${patient.id}}"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{'/patient/delete/' + ${patient.id}}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <div>
+            <a href="/patient/add">Nouveau patient</a>
+        </div>
+    </main>
+
+    <footer th:include="~{ footer :: #footer }"></footer>
+</body>
+</html>

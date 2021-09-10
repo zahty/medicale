@@ -1,0 +1,13 @@
+<header id="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="container">
+    <a href="/">Dashboards</a>
+    <a href="/patient">Patients</a>
+    <a href="/rdv">RDV</a>
+    <a href="/ville">Villes</a>
+    <a href="/user" sec:authorize="hasRole('ROLE_ADMIN')">Utilisateurs</a>
+    <a href="/logout">Logout</a>
+
+    <div  style="color: #FFF;    float: right;">Bienvenue <span th:text =" ${#authentication.getPrincipal().getUser().getName()}"></span> </div>
+</header>
+
+<div th:if="${param.success}" class="success" style="color: #00FF00">Opération effectuée avec succès</div>
+<div th:if="${param.error}" class="error" style="color: #00FF00"></div>

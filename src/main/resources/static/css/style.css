@@ -1,0 +1,145 @@
+* {
+    font-family: Arial;
+    font-family: 15px;
+}
+
+body {
+    background: #CCC;
+    margin: 0;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+}
+
+main {
+    background: #FFF;
+    width: 50%;
+    margin: 50px auto 0;
+    padding: 15px;
+    border-radius: 4px;
+    border: solid 1px #CCC;
+}
+
+form {
+    margin-top: 30px;
+}
+
+label {
+    display: inline-block;
+    width: 40%;
+}
+
+input,
+select {
+    border: solid 1px #CCC;
+    font-size: 14px;
+    padding: 5px;
+    width: 59%;
+    border-spacing: 0;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+button , .button {
+    background: #C43F90;
+    color: #FFF;
+    border: 0 none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+
+.button {
+    background: #C43F90;
+    color: #FFF;
+    border: 0 none;
+    min-width: 200px ;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 10px 0;
+    margin: 30px auto;
+    display: block;
+    text-align: center;
+}
+
+div.form-line {
+    margin-bottom: 18px;
+}
+
+
+/* On screens that are 600px or less, set the background color to olive */
+
+@media screen and (max-width: 600px) {
+    body {
+        margin: 0;
+    }
+    main {
+        width: 90%;
+        margin: 0;
+        padding: 5%;
+        border: 0 none;
+        border-radius: 0;
+    }
+    label,
+    input,
+    select,
+    button {
+        width: 100%;
+    }
+}
+
+.alert{
+    color: #F00;
+    padding: 10px 0;
+}
+
+
+footer {
+    position: fixed;
+    height: auto;
+    background: #455;
+    color: #FFF;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 10px 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #CCC;
+    padding: 15px;
+    background: #555;
+}
+
+header a {
+    font-size: 14px;
+    padding: 10px;
+    color: #FFF;
+}
+
+
+.entete_fenetre {
+    margin: 25px 0;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: solid 2px #CCC;
+    padding-bottom: 6px;
+}
+
+.icon_champ .icone {
+    width: 40%;
+    display: inline-block;
+}
+
+.form_block {
+ margin-bottom: 10px;
+}

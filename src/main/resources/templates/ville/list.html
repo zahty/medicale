@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:include="~{ head :: #head }"></head>
+<body>
+    <header th:include="~{ header :: #header }"></header>
+
+    <main>
+
+        <div id="liste_patients">
+            <div class="entete_fenetre">Liste des Villes</div>
+            <div class="conteneur_fenetre">
+                <table>
+                    <tr>
+                        <th>Ville</th>
+                        <th>CP</th>
+                        <th><i class="fas fa-cogs"></i></th>
+                    </tr>
+                    <tr th:each="v : ${liste_ville}">
+                        <td th:utext="${v.nom}"></td>
+                        <td th:utext="${v.codePostal}"></td>
+                        <td>
+                            <a th:href="@{'/ville/edit/' + ${v.id}}"><i class="fas fa-edit"></i></a>
+                            <a th:href="@{'/ville/delete/' + ${v.id}}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <div class="fonctions">
+                    <a href="/ville/add" class="button">Nouvelle ville</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:include="~{ footer :: #footer }"></footer>
+</body>
+</html>
