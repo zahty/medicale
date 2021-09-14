@@ -2,36 +2,54 @@
 <html xmlns:th="https://www.thymeleaf.org">
     <head th:include="~{ head :: #head }"></head>
 <body>
-    <header th:include="~{ header :: #header }"></header>
+    <header th:replace="~{ header :: #header }"></header>
 
-    <main>
-
-        <div id="liste_patients">
-            <div class="entete_fenetre">Liste des Villes</div>
-            <div class="conteneur_fenetre">
-                <table>
-                    <tr>
-                        <th>Ville</th>
-                        <th>CP</th>
-                        <th><i class="fas fa-cogs"></i></th>
-                    </tr>
-                    <tr th:each="v : ${liste_ville}">
-                        <td th:utext="${v.nom}"></td>
-                        <td th:utext="${v.codePostal}"></td>
-                        <td>
-                            <a th:href="@{'/ville/edit/' + ${v.id}}"><i class="fas fa-edit"></i></a>
-                            <a th:href="@{'/ville/delete/' + ${v.id}}"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                </table>
-                <br />
-                <div class="fonctions">
-                    <a href="/ville/add" class="button">Nouvelle ville</a>
-                </div>
-            </div>
-        </div>
+    <main class="container">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success float-end">Nouvelle ville</button>
+        <div class="h2">Liste des Villes</div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Ville</th>
+                <th>CP</th>
+                <th style="width:100px"><i class="fas fa-cogs"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="v : ${liste_ville}">
+                    <td th:utext="${v.nom}"></td>
+                    <td th:utext="${v.codePostal}"></td>
+                    <td>
+                        <a th:href="@{'/ville/edit/' + ${v.id}}"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{'/ville/delete/' + ${v.id}}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </main>
 
     <footer th:include="~{ footer :: #footer }"></footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form name="villeForm" method="POST" action="/ville/add">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter une ville</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div th:include="~{ ville/add_edit :: #villeFields }"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">Valider</button>
+                        <button type="reset" class="btn btn-danger float-end">Annuler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

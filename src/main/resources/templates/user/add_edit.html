@@ -6,56 +6,57 @@
 <body>
 
     <header th:include="~{ header :: #header }"></header>
-    <main>
-        <div id="formulaire">
-            <div class="entete_fenetre" th:text="${entete_titre}"></div>
-            <form name="userForm" method="POST">
-                <div class="form_block">
-                    <div class="icon_champ">
-                        <span class="icone"><i class="fas fa-user-edit"></i>Nom</span>
-                        <input type="text" name="nom" th:value="${value_nom}"
-                            required>
-                    </div>
-                    <div class="icon_champ">
-                        <span class="icone"><i class="fas fa-portrait"></i></i>Photo</span>
-                        <input type="text" name="photouser" id="photouser" th:value="${value_photouser}">
-                    </div>
+    <main class="container">
+        <div class="h2" th:text="${entete_titre}"></div>
 
+        <form name="userForm" method="POST" action="/patient/add">
+
+            <div id="userFields">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" th:value="${value_nom}"  minlength="2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" th:value="${value_username}"  minlength="2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="photouser" class="form-label">Photo</label>
+                    <input type="text" class="form-control" name="photouser" id="photouser" placeholder="Photo" th:value="${value_photouser}" minlength="2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" th:placeholder="${placeholder_mail}" th:value="${value_mail}" minlength="2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                   <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  minlength="2" th:required="${!is_edit}">
 
                 </div>
-                <div class="form_block">
-                    <div class="icon_champ">
-                        <span class="icone"><i class="fas fa-at"></i>Email</span>
-                        <input type="email" name="email" id="email" th:placeholder="${placeholder_mail}"
-                            th:value="${value_mail}" required>
-                    </div>
-                    <div class="icon_champ">
-                        <span class="icone"><i class="fas fa-key"></i></i>Mot de passe</span>
-                        <input type="password" name="password" id="password" th:required="${!is_edit}"
-                            placeholder="***">
-                    </div>
 
-                </div>
-                <div class="form_block">
-                    <div class="icon_champ">
-                        <span class="icone"><i class="fas fa-crown"></i>Rôle</span>
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Rôle</label>
 
-                        <div>
-                            <input type="radio" id="user" name="roles" value="ROLE_USER" th:checked="${!as_admin}">
-                            <label for="user">Utilisateur</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="user" name="roles" value="ROLE_USER" th:checked="${!as_admin}">
+                            <label class="form-check-label" for="user">Utilisateur</label>
                         </div>
-                        <div>
-                            <input type="radio" id="admin" name="roles" value="ROLE_ADMIN" th:checked="${as_admin}">
-                            <label for="admin">Administrateur</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="admin" name="roles" value="ROLE_ADMIN" th:checked="${as_admin}">
+                            <label class="form-check-label" for="admin">Administrateur</label>
                         </div>
-
                     </div>
                 </div>
+            </div>
 
-
-                <button>Valider</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-secondary">Valider</button>
+            <button type="reset" class="btn btn-danger float-end">Annuler</button>
+        </form>
     </main>
     <footer th:include="~{ footer :: #footer }"></footer>
 </body>

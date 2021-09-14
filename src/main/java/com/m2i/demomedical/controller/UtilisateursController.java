@@ -34,6 +34,8 @@ public class UtilisateursController {
     public String listAll(Model model) {
         List<UserEntity> lu = (List<UserEntity>) ur.findAll();
         model.addAttribute("liste_utilisateurs", lu);
+        model.addAttribute("is_edit", false);
+        model.addAttribute("as_admin", false);
         return "user/list";
     }
 
@@ -54,7 +56,7 @@ public class UtilisateursController {
         try {
             UserEntity u = new UserEntity();
             u.setName(request.getParameter("nom"));
-            u.setUsername(request.getParameter("nom"));
+            u.setUsername(request.getParameter("username"));
             u.setEmail(request.getParameter("email"));
             u.setPassword(applicationConfig.passwordEncoder().encode(request.getParameter("password")));
             u.setPhotouser(request.getParameter("photouser"));
@@ -74,6 +76,7 @@ public class UtilisateursController {
             model.addAttribute("entete_titre", "Modifier Utilisateur ID " + String.valueOf(id));
             model.addAttribute("value_nom", u.getName());
             model.addAttribute("value_mail", u.getEmail());
+            model.addAttribute("value_username", u.getUsername());
             model.addAttribute("value_photouser", u.getPhotouser());
             model.addAttribute("as_admin", u.getRoles().equals("ROLE_ADMIN"));
             model.addAttribute("is_edit", true);
@@ -97,7 +100,7 @@ public class UtilisateursController {
             }
             u.setPhotouser(request.getParameter("photouser"));
             u.setRoles(request.getParameter("roles"));
-            u.setUsername(request.getParameter("nom"));
+            u.setUsername(request.getParameter("username"));
             ur.save(u);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erreur dans l'édition du patient " + id);

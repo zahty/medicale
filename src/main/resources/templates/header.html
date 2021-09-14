@@ -1,10 +1,42 @@
-<header id="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="container">
-    <a href="/">Dashboards</a>
-    <a href="/patient">Patients</a>
-    <a href="/rdv">RDV</a>
-    <a href="/ville">Villes</a>
-    <a href="/user" sec:authorize="hasRole('ROLE_ADMIN')">Utilisateurs</a>
-    <a href="/logout">Logout</a>
+<header id="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MediCom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/patient">Patients</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ville">Villes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">RDV</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user" sec:authorize="hasRole('ROLE_ADMIN')">Utilisateurs</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div  style="color: #FFF;    float: right;">Bienvenue <span th:text =" ${#authentication.getPrincipal().getUser().getName()}"></span> </div>
 </header>

@@ -37,6 +37,7 @@ public class PatientController {
     @GetMapping("")
     public String list( Model model ){
         model.addAttribute( "liste_patient" , ps.getList() );
+        model.addAttribute( "liste_villes" , vs.getList() );
         return "patient/list";
     }
 
@@ -55,6 +56,7 @@ public class PatientController {
         String telephone = request.getParameter("telephone");
         String email = request.getParameter("email");
         String ville = request.getParameter("ville");
+
 
         //lh.log(" AddPost : Params : nom = "+nom+", prenom = "+nom+" ", INFO );
 
