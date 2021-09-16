@@ -5,26 +5,17 @@
     <header th:replace="~{ header :: #header }"></header>
 
     <main class="container">
-    <!--    <div th:if="${param.success}" style="color: #0F0">Opération effectuée avec succès</div>
-        <div th:if="${param.success}" class="alert alert-success" role="alert">Opération effectuée avec succès</div>
-
-        <div th:if="${param.error}" style="color: #F00" th:text="${param.error}"></div>
-        <div th:if="${param.error}" class="alert alert-danger" role="alert">Problème est survenu</div>
-    -->
-
 
         <div class="h2">Liste des Patients</div>
-       <!-- <a href="/patient/add" class="btn btn-primary float-end">Nouveau patient</a> -->
-        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success float-end">Nouveau patient</button>
-
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary float-end">Nouveau patient</button>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>id</th>
                     <th>Nom</th>
-                    <th>Prénom</th>
+                    <th>Pr�nom</th>
                     <th>Mail</th>
-                    <th>Téléphone</th>
+                    <th>T�l�phone</th>
                     <th>Ville</th>
                     <th><i class="fas fa-cogs"></i></th>
                 </tr>
@@ -37,7 +28,6 @@
                     <td th:utext="${patient.email}"></td>
                     <td th:utext="${patient.telephone}"></td>
                     <td th:utext="${patient.ville?.nom}"></td>
-
                     <td>
                         <a th:href="@{'/patient/edit/' + ${patient.id}}"><i class="fas fa-edit"></i></a>
                         <a th:href="@{'/patient/delete/' + ${patient.id}}"><i class="fas fa-trash"></i></a>
@@ -47,19 +37,13 @@
         </table>
         <br />
     </main>
-    <div class="container">
-        <div th:if="${param.success}" class="alert alert-success" role="alert">Opération effectuée avec succès</div>
-        <div th:if="${param.error}" class="alert alert-danger" role="alert">Problème est survenu</div>
-    </div>
 
     <footer th:include="~{ footer :: #footer }"></footer>
-
-
-
+    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form name="patientForm" method="POST" action="/patient/add">
+            <form name="villeForm" method="POST" action="/patient/add">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ajouter un patient</h5>
@@ -68,15 +52,14 @@
                     <div class="modal-body">
                         <div th:include="~{ patient/add_edit :: #patientFields }"></div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary">Valider</button>
+                    <div class="modal-footer justify-content-between">
                         <button type="reset" class="btn btn-danger float-end">Annuler</button>
+                        <button type="submit" class="btn btn-secondary">Valider</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
-
+    
 </body>
 </html>

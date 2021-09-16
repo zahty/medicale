@@ -8,51 +8,53 @@
     <header th:include="~{ header :: #header }"></header>
     <main class="container">
         <div class="h2" th:text="${entete_titre}"></div>
-
-        <form name="userForm" method="POST" action="/patient/add">
-
+        <form name="userForm" method="POST" autocomplete="off"> 
             <div id="userFields">
-                <div class="mb-3">
-                    <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" th:value="${value_nom}"  minlength="2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" th:value="${value_username}"  minlength="2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="photouser" class="form-label">Photo</label>
-                    <input type="text" class="form-control" name="photouser" id="photouser" placeholder="Photo" th:value="${value_photouser}" minlength="2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" th:placeholder="${placeholder_mail}" th:value="${value_mail}" minlength="2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                   <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  minlength="2" th:required="${!is_edit}">
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="nom" class="form-label">Rôle</label>
-
-                    <div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="user" name="roles" value="ROLE_USER" th:checked="${!as_admin}">
-                            <label class="form-check-label" for="user">Utilisateur</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="admin" name="roles" value="ROLE_ADMIN" th:checked="${as_admin}">
-                            <label class="form-check-label" for="admin">Administrateur</label>
-                        </div>
-                    </div>
-                </div>
+	            <div class="mb-3">
+	                <label for="nom" class="form-label">Nom</label>
+	                <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" th:value="${u?.name}"  minlength="2" required>
+	            </div>
+	
+	            <div class="mb-3">
+	                <label for="username" class="form-label">Nom d'utilisateur</label>
+	                <input type="text" class="form-control" id="username" name="username" placeholder="Username" th:value="${u?.username}"  minlength="2" required autocomplete="false">
+	            </div>
+	
+	            <div class="mb-3">
+	                <label for="photouser" class="form-label">Photo</label>
+	                <input type="text" class="form-control" name="photouser" id="photouser" placeholder="Photo" th:value="${u?.photouser}" minlength="2" required>
+	            </div>
+	
+	            <div class="mb-3">
+	                <label for="email" class="form-label">Email</label>
+	                <input type="text" class="form-control" name="email" id="email" th:placeholder="${placeholder_mail}" th:value="${u?.email}" minlength="2" required>
+	            </div>
+	
+	            <div class="mb-3">
+	                <label for="password" class="form-label">Mot de passe</label>
+	                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  minlength="2" th:required="${!is_edit}" autocomplete="false">
+	            </div>
+	
+			</div>
+	
+	
+            <div  id="roleField">
+	            <div class="mb-3" >
+	                <label for="nom" class="form-label">Rôle</label>
+	
+	                <div>
+	                    <div class="form-check form-check-inline">
+	                        <input class="form-check-input" type="radio" id="user" name="roles" value="ROLE_USER" th:checked="${!as_admin}">
+	                        <label class="form-check-label" for="user">Utilisateur</label>
+	                    </div>
+	                    <div class="form-check form-check-inline">
+	                        <input class="form-check-input" type="radio" id="admin" name="roles" value="ROLE_ADMIN" th:checked="${as_admin}">
+	                        <label class="form-check-label" for="admin">Administrateur</label>
+	                    </div>
+	                </div>
+	            </div>
             </div>
+            
 
             <button type="submit" class="btn btn-secondary">Valider</button>
             <button type="reset" class="btn btn-danger float-end">Annuler</button>
